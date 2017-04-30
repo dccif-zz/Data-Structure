@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Tree.c">
+    <ClCompile Include="BinaryTree.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
