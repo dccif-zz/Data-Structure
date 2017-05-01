@@ -6,19 +6,30 @@ typedef struct BiTNode {
 	struct BiTNode *lchild, *rchild;
 }BiTNode,*BiTree;
 
-void createBTree(BiTree *root) {
+int createBTree(BiTree *root) {
 	TElemType val;
-	val = getchar();
-	if (val == '#')
+	scanf_s("%d", &val);
+	if (val == -1){
 		*root = NULL;
+		return 0;
+	}
 	else {
 		*root = (BiTree)malloc(sizeof(BiTNode));
-		(*root)->data = val;
-		(*root)->lchild = NULL;
-		(*root)->rchild = NULL;
-		createBTree(&(*root)->lchild);
-		createBTree(&(*root)->rchild);
+		if (root == NULL) {
+			printf("failed\n");
+			return 0;
+		}
+		else
+		{
+			(*root)->data = val;
+			printf("输入%d的左子节点：", val);
+			createBTree(&((*root)->lchild));
+			printf("输入%d的右子节点：", val);
+			createBTree(&((*root)->rchild));
+		}
 	}
+
+	return 1;
 }
 
 
@@ -51,8 +62,7 @@ void insertRightTree(BiTree root, int val) {
 
 
 int main() {
-	BiTNode *myNode;
+	BiTNode *myTree;
 	//BiTree myNode;
-	createBTree(myNode);
-	insertLeftTree(myNode, 5);
+	createBTree(&myTree);
 }
