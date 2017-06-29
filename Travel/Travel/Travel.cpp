@@ -13,7 +13,10 @@ int main() {
 	Myguest.insertchain(5, chainpoint);
 	Myguest.insertchain(8, chainpoint);
 	Myguest.insertchain(9, chainpoint);
-	//Myguest.printall(chainpoint);
+	Myguest.printall(chainpoint);
+	Myguest.countNum(chainpoint);
+	Myguest.deletechain(5, chainpoint);
+	Myguest.printall(chainpoint);
 	Myguest.countNum(chainpoint);
 
 	sightTree *Treepoint;

@@ -17,6 +17,7 @@ public:
 	//方法
 	void printall(guestchain *chpoint);
 	int insertchain(int id, guestchain *chainpoint);
+	guestchain* deletechain(int id, guestchain *chainpoint);
 	int countNum(guestchain *chain);
 	int writeTotree(int Num);
 };
@@ -26,7 +27,9 @@ void guestchain::printall(guestchain *chpoint)
 {
 	while (NULL != chpoint->next) {
 		cout << chpoint->guestId << endl;
+		chpoint = chpoint->next;
 	}
+	cout << chpoint->guestId << endl;
 }
 
 //单链表插入
@@ -37,6 +40,29 @@ int guestchain::insertchain(int id, guestchain *chain)
 	}
 	chain->next = new guestchain(id);
 	return 0;
+}
+
+//单链表删除
+guestchain* guestchain::deletechain(int id, guestchain *chpoint)
+{
+	guestchain *prtbef = chpoint;
+	guestchain *prtcul = chpoint;
+	if (chpoint->guestId == id) {
+		prtbef = chpoint;
+		chpoint = chpoint->next;
+		delete prtbef;
+		return chpoint;
+	}
+	while (prtcul->guestId !=id && prtcul->next !=NULL)
+	{
+		prtbef = prtcul;
+		prtcul = prtcul->next;
+	}
+	if (prtcul->guestId == id) {
+		prtbef->next = prtcul->next;
+		delete prtcul;
+	}
+	return chpoint;
 }
 
 //单链表计数
@@ -50,4 +76,6 @@ int guestchain::countNum(guestchain *chpoint)
 	cout << num << endl;
 	return num;
 }
+
+
 
