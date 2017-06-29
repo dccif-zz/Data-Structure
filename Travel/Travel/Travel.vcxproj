@@ -21,6 +21,10 @@
   <ItemGroup>
     <ClCompile Include="Travel.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Guestchain.h" />
+    <ClInclude Include="SightTree.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{E635AF0A-A49F-4312-8F1D-72AC669F4E2B}</ProjectGuid>
