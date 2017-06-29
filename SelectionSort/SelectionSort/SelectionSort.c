@@ -18,7 +18,7 @@ void selectsort(int arr[], int len) {
 void main()
 {
 	int i;
-	int arr[] = { 20,40,30,10,60,50 };
+	int arr[] = { 30,40,20,10,60,50 };
 	int ilen = LENGTH(arr);
 
 	printf("before sort:");
