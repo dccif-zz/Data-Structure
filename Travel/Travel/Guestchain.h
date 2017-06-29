@@ -23,6 +23,7 @@ public:
 };
 
 //单链表输出
+//chpoint 为单链表指针
 void guestchain::printall(guestchain *chpoint)
 {
 	while (NULL != chpoint->next) {
@@ -45,22 +46,22 @@ int guestchain::insertchain(int id, guestchain *chain)
 //单链表删除
 guestchain* guestchain::deletechain(int id, guestchain *chpoint)
 {
-	guestchain *prtbef = chpoint;
-	guestchain *prtcul = chpoint;
-	if (chpoint->guestId == id) {
+	guestchain *prtbef = chpoint;			//前驱指针
+	guestchain *prtdel = chpoint;			//删除指针
+	if (chpoint->guestId == id) {			//如果是头结点的删除
 		prtbef = chpoint;
 		chpoint = chpoint->next;
 		delete prtbef;
 		return chpoint;
 	}
-	while (prtcul->guestId !=id && prtcul->next !=NULL)
+	while (prtdel->guestId !=id && prtdel->next !=NULL)
 	{
-		prtbef = prtcul;
-		prtcul = prtcul->next;
+		prtbef = prtdel;
+		prtdel = prtdel->next;
 	}
-	if (prtcul->guestId == id) {
-		prtbef->next = prtcul->next;
-		delete prtcul;
+	if (prtdel->guestId == id) {
+		prtbef->next = prtdel->next;
+		delete prtdel;
 	}
 	return chpoint;
 }
