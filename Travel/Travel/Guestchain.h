@@ -1,5 +1,6 @@
 #pragma once
 #include<iostream>
+#include<string>
 
 using namespace std;
 
@@ -7,7 +8,7 @@ using namespace std;
 class guestchain {
 public:
 	int guestId;
-	char* name;
+	string name;
 	guestchain *next;
 
 	//构造函数
@@ -19,7 +20,7 @@ public:
 	int insertchain(int id, guestchain *chainpoint);
 	guestchain* deletechain(int id, guestchain *chainpoint);
 	int countNum(guestchain *chain);
-	guestchain* chainsearch(int id,guestchain *&chainpoint);
+	guestchain* chainsearch(int id, guestchain *&chainpoint);
 };
 
 //单链表输出
@@ -37,14 +38,14 @@ void guestchain::printall(guestchain *chpoint)
 int guestchain::insertchain(int id, guestchain *chain)
 {
 	while (NULL != chain->next) {
-		chain  = chain ->next;
+		chain = chain->next;
 	}
 	chain->next = new guestchain(id);
 	return 0;
 }
 
 //单链表删除
-//id 要删除的结点 
+//id 要删除的结点
 //chpoint 单链表指针
 //返回 guestchain指针
 guestchain* guestchain::deletechain(int id, guestchain *chpoint)
@@ -57,7 +58,7 @@ guestchain* guestchain::deletechain(int id, guestchain *chpoint)
 		delete prtbef;
 		return chpoint;
 	}
-	while (prtdel->guestId !=id && prtdel->next !=NULL)
+	while (prtdel->guestId != id && prtdel->next != NULL)
 	{
 		prtbef = prtdel;
 		prtdel = prtdel->next;
@@ -74,7 +75,7 @@ guestchain* guestchain::deletechain(int id, guestchain *chpoint)
 int guestchain::countNum(guestchain *chpoint)
 {
 	int num = 1;
-	while (NULL!= chpoint->next) {
+	while (NULL != chpoint->next) {
 		chpoint = chpoint->next;
 		num++;
 	}
@@ -85,7 +86,7 @@ int guestchain::countNum(guestchain *chpoint)
 //单链表的查找
 //id 要查找元素
 //chainpoint 单链表指针
-guestchain* guestchain::chainsearch(int id,guestchain *&chainpoint)
+guestchain* guestchain::chainsearch(int id, guestchain *&chainpoint)
 {
 	guestchain *prtbef = chainpoint;		//前驱指针
 	while (chainpoint->next != NULL)

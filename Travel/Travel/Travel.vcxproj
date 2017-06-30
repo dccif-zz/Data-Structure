@@ -22,8 +22,11 @@
     <ClCompile Include="Travel.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AdministratorInterface.h" />
     <ClInclude Include="Guestchain.h" />
+    <ClInclude Include="GuestInterface.h" />
     <ClInclude Include="SightTree.h" />
+    <ClInclude Include="UI.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

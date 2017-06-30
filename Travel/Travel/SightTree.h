@@ -15,8 +15,8 @@ public:
 	sightTree(int id) :sightID(id), lchild(NULL), rchild(NULL), chain(NULL), flow(0), pv(0) {}
 
 	//方法
-	void insertnode(int newid,sightTree *root);
-	void deletenode(int newid,sightTree *&root);
+	void insertnode(int newid, sightTree *root);
+	void deletenode(int newid, sightTree *&root);
 	sightTree* search(int newid, sightTree *&root);
 	sightTree* findMin(sightTree *&minpin);
 
@@ -38,7 +38,7 @@ sightTree * sightTree::search(int newid, sightTree *&root)
 		if (q->sightID == newid) {
 			return root;
 		}
-		else if(q->sightID > newid)
+		else if (q->sightID > newid)
 		{
 			q = q->lchild;
 		}
@@ -61,10 +61,10 @@ sightTree * sightTree::findMin(sightTree *&minpin) {
 }
 
 //二叉排序树插入
-void sightTree::insertnode(int newid,sightTree *root)
+void sightTree::insertnode(int newid, sightTree *root)
 {
 	sightTree *q = root;
-	if (search(newid, root) == NULL) 
+	if (search(newid, root) == NULL)
 	{
 		sightTree *r = new sightTree(newid);
 		if (root == NULL) {
@@ -73,7 +73,7 @@ void sightTree::insertnode(int newid,sightTree *root)
 		}
 		if (root&&newid < root->sightID)
 			root->lchild = r;
-		else if(root && newid > root->sightID)
+		else if (root && newid > root->sightID)
 			root->rchild = r;
 	}
 }
@@ -105,7 +105,7 @@ void sightTree::deletenode(int newid, sightTree *&p)
 		}
 	}
 }
-	
+
 
 //中序遍历
 void sightTree::inorder(sightTree *tree)
