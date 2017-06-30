@@ -44,6 +44,9 @@ int guestchain::insertchain(int id, guestchain *chain)
 }
 
 //单链表删除
+//id 要删除的结点 
+//chpoint 单链表指针
+//返回 guestchain指针
 guestchain* guestchain::deletechain(int id, guestchain *chpoint)
 {
 	guestchain *prtbef = chpoint;			//前驱指针
@@ -67,6 +70,7 @@ guestchain* guestchain::deletechain(int id, guestchain *chpoint)
 }
 
 //单链表计数
+//chpoint 单链表指针
 int guestchain::countNum(guestchain *chpoint)
 {
 	int num = 1;
@@ -79,10 +83,11 @@ int guestchain::countNum(guestchain *chpoint)
 }
 
 //单链表的查找
+//id 要查找元素
+//chainpoint 单链表指针
 guestchain* guestchain::chainsearch(int id,guestchain *&chainpoint)
 {
-	guestchain *prtbef = chainpoint;			//前驱指针
-
+	guestchain *prtbef = chainpoint;		//前驱指针
 	while (chainpoint->next != NULL)
 	{
 		prtbef = chainpoint;
@@ -91,7 +96,15 @@ guestchain* guestchain::chainsearch(int id,guestchain *&chainpoint)
 		}
 		chainpoint = chainpoint->next;
 	}
-	return chainpoint;
+	//如果到最后都没匹配到，则返回空指针
+	if (chainpoint->guestId != id) {
+		chainpoint = NULL;
+		return chainpoint;
+	}
+	else
+	{
+		return chainpoint;
+	}
 }
 
 
