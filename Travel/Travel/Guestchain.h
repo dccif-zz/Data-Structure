@@ -19,7 +19,7 @@ public:
 	int insertchain(int id, guestchain *chainpoint);
 	guestchain* deletechain(int id, guestchain *chainpoint);
 	int countNum(guestchain *chain);
-	int writeTotree(int Num);
+	guestchain* chainsearch(int id,guestchain *&chainpoint);
 };
 
 //单链表输出
@@ -76,6 +76,22 @@ int guestchain::countNum(guestchain *chpoint)
 	}
 	cout << num << endl;
 	return num;
+}
+
+//单链表的查找
+guestchain* guestchain::chainsearch(int id,guestchain *&chainpoint)
+{
+	guestchain *prtbef = chainpoint;			//前驱指针
+
+	while (chainpoint->next != NULL)
+	{
+		prtbef = chainpoint;
+		if (chainpoint->guestId == id) {
+			return prtbef;
+		}
+		chainpoint = chainpoint->next;
+	}
+	return chainpoint;
 }
 
 
