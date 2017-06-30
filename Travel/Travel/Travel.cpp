@@ -19,20 +19,18 @@ int main() {
 	Myguest.deletechain(9, chainpoint);
 	Myguest.printall(chainpoint);
 	Myguest.countNum(chainpoint);
-	Myguest.chainsearch(7, opchainpoint);
+	//Myguest.chainsearch(7, opchainpoint);
+	
 
 	sightTree *Treepoint;
-	sightTree Mysight(5);
+	sightTree Mysight(45);
 	Treepoint = &Mysight;
 	Mysight.chain = chainpoint;
 	Mysight.chain->printall(chainpoint);
-	Mysight.insertnode(4,Treepoint);
-	Mysight.insertnode(9,Treepoint);
-	Mysight.insertnode(6, Treepoint);
-
-
-	
-
+	Mysight.insertnode(24,Treepoint);
+	Mysight.insertnode(53,Treepoint);
+	Mysight.insertnode(12, Treepoint);
+	//Mysight.deletenode(24, Treepoint);
 
 	system("pause");
 	return 0;

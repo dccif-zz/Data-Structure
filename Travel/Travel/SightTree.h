@@ -5,9 +5,9 @@ using namespace std;
 //景点的二叉排序树
 class sightTree {
 public:
+	int sightID;
 	sightTree *lchild;
 	sightTree *rchild;
-	int sightID;
 	guestchain *chain;//单链表指针
 	int flow;
 	int pv;
@@ -16,10 +16,12 @@ public:
 
 	//方法
 	void insertnode(int newid,sightTree *root);
-	int deletenode(int newid,sightTree *root);
+	void deletenode(int newid,sightTree *&root);
 	sightTree* search(int newid, sightTree *&root);
+	sightTree* findMin(sightTree *&minpin);
 
 	//遍历
+
 	void inorder(sightTree *tree);
 	void preorder(sightTree *tree);
 
@@ -48,7 +50,15 @@ sightTree * sightTree::search(int newid, sightTree *&root)
 	return NULL;
 }
 
-
+sightTree * sightTree::findMin(sightTree *&minpin) {
+	if (NULL != minpin) {
+		while (NULL != minpin->lchild)
+		{
+			minpin = minpin->lchild;
+		}
+	}
+	return minpin;
+}
 
 //二叉排序树插入
 void sightTree::insertnode(int newid,sightTree *root)
@@ -69,63 +79,33 @@ void sightTree::insertnode(int newid,sightTree *root)
 }
 
 //二叉排序树的删除
-int sightTree::deletenode(int newid,sightTree *p)
+void sightTree::deletenode(int newid, sightTree *&p)
 {
-	sightTree *f,*q, *s;
-	f = NULL;
-	
-	while (p && p->sightID  != newid)
-	{
-		f = p;
-		if (p->sightID > newid) {
-			p = p->lchild;
-		}
-		else
-		{
-			p = p->rchild;
-		}
-	}
-	if (!p)
-		return 0;
-	if (p->lchild == NULL) 
-	{
-		if (f == NULL) {
-			p = p->rchild;
-		}
-		else if(f->lchild ==p)
-		{
-			f->lchild = p->rchild;
-		}
-		else
-		{
-			f->rchild = p->rchild;
-		}
-		delete p;
+	if (NULL == p) {
+		return;
 	}
 	else
 	{
-		q = p;
-		s = p->lchild;
-		while (s->rchild)
-		{
-			q = s;
-			s = s->rchild;
+		if (newid < p->sightID) {
+			deletenode(newid, p->lchild);
 		}
-		if (q == p) {
-			q->lchild = s->lchild;
+		else if (newid > p->sightID)
+		{
+			deletenode(newid, p->rchild);
+		}
+		else if (NULL != p->lchild && NULL != p->rchild) {
+			p->sightID = findMin(p->rchild)->sightID;
+			deletenode(p->sightID, p->rchild);
 		}
 		else
 		{
-			q->rchild = s->lchild;
+			sightTree * oldnode = p;
+			p = (NULL != p->lchild) ? p->lchild : p->rchild;
+			delete oldnode;
 		}
-		p->sightID = s->sightID;
-		delete s;
 	}
 }
-
-
-
-
+	
 
 //中序遍历
 void sightTree::inorder(sightTree *tree)
