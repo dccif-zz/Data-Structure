@@ -13,6 +13,7 @@ public:
 	int pv;
 	//构造函数
 	sightTree(int id) :sightID(id), lchild(NULL), rchild(NULL), chain(NULL), flow(0), pv(0) {}
+	sightTree() :lchild(NULL), rchild(NULL), chain(NULL), flow(0), pv(0) {}
 
 	//方法
 	void insertnode(int newid, sightTree *root);
@@ -112,7 +113,7 @@ void sightTree::inorder(sightTree *tree)
 {
 	if (tree != NULL) {
 		inorder(tree->lchild);
-		cout << tree->sightID << endl;
+		cout << tree->sightID<<"	";
 		inorder(tree->rchild);
 	}
 }

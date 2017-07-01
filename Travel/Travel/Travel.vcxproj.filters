@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="头文件\DataStructure">
-      <UniqueIdentifier>{94e9c0f8-b912-44be-856c-4124bc35998e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\Interface">
-      <UniqueIdentifier>{dce3ce1e-de57-4d01-9d24-36e2fb733fc1}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Travel.cpp">
@@ -26,20 +20,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Guestchain.h">
-      <Filter>头文件\DataStructure</Filter>
-    </ClInclude>
     <ClInclude Include="SightTree.h">
-      <Filter>头文件\DataStructure</Filter>
+      <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="AdministratorInterface.h">
-      <Filter>头文件\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="GuestInterface.h">
-      <Filter>头文件\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>头文件\Interface</Filter>
+    <ClInclude Include="Guestchain.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
