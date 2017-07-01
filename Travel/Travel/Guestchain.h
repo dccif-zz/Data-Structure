@@ -13,12 +13,12 @@ public:
 
 	//构造函数
 	//guestchain(int id,char* thename):guestId(id),name(thename),next(NULL){}
-	guestchain(int id,string itsname) :guestId(id), name(itsname), next(NULL) {}
+	guestchain(int id, string itsname) :guestId(id), name(itsname), next(NULL) {}
 	guestchain(int id) :guestId(id), name("默认"), next(NULL) {}
 
 	//方法
-	void printall(guestchain *chpoint);
-	int insertchain(int id, string itsname,guestchain *chainpoint);
+	void printall();
+	int insertchain(int id, string itsname, guestchain *chainpoint);
 	guestchain* deletechain(int id, guestchain *chainpoint);
 	int countNum(guestchain *chain);
 	guestchain* chainsearch(int id, guestchain *&chainpoint);
@@ -26,22 +26,29 @@ public:
 
 //单链表输出
 //chpoint 为单链表指针
-void guestchain::printall(guestchain *chpoint)
+void guestchain::printall()
 {
-	while (NULL != chpoint->next) {
-		cout << chpoint->name << endl;
-		chpoint = chpoint->next;
+	guestchain* headpoint = this;
+	if (headpoint == NULL) {
+		return;
 	}
-	cout << chpoint->name << endl;
+	else
+	{
+		while (NULL != headpoint->next) {
+			cout << headpoint->name << "	";
+			headpoint = headpoint->next;
+		}
+	}
+	cout << headpoint->name << "	" << endl;
 }
 
 //单链表插入
-int guestchain::insertchain(int id,string itsname,guestchain *chain)
+int guestchain::insertchain(int id, string itsname, guestchain *chain)
 {
 	while (NULL != chain->next) {
 		chain = chain->next;
 	}
-	chain->next = new guestchain(id,itsname);
+	chain->next = new guestchain(id, itsname);
 	return 0;
 }
 

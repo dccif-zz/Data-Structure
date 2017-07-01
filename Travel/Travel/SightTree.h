@@ -114,6 +114,7 @@ void sightTree::inorder(sightTree *tree)
 	if (tree != NULL) {
 		inorder(tree->lchild);
 		cout << tree->sightID<<"	";
+		tree->chain->printall();
 		inorder(tree->rchild);
 	}
 }
