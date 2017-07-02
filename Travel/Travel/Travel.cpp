@@ -66,11 +66,12 @@ int main() {
 			cin >> OperateId;
 
 			if (OperateId == 1) {
-
+				MainSightTreePoint->inorder(MainSightTreePoint);
 			}
 			else if (OperateId == 2) {
 				cout << "请输入姓名：";
 				cin >> GuestName;
+				cout << "你的操作ID为："<<guestRandomId<<" 请牢记！！"<<endl;
 				headguest = new guestchain(guestRandomId, GuestName);					//初始化游客单链表结点，头指针指向当前单链表
 				cout << "请输入景点代码：";
 				cin >> SightID;
@@ -93,6 +94,8 @@ int main() {
 			else if (OperateId == 3) {
 				cout << "请输入了景点代码：";
 				cin >> SightID;
+				cout << "请输入你的操作ID：";
+				cin >> guestRandomId;
 				SToperatepoint = MainSightTreePoint->search(SightID, STSearchpoint);	//查找景点代码在树中位置，返回指针
 				STSearchpoint = MainSightTreePoint;										//搜索指针归位
 				if (SToperatepoint->chain == NULL) {									//如果当前景点下无人预约
@@ -101,7 +104,7 @@ int main() {
 				else
 				{
 					GCoperatepoint = SToperatepoint->chain;														//如果当前景点下已有单链表，单链表操作指针指向当前树下结点
-					SToperatepoint->chain->deletechain(guestRandomId, GCoperatepoint);							//删除当前景点下单链表
+					SToperatepoint->chain=SToperatepoint->chain->deletechain(guestRandomId, GCoperatepoint);							//删除当前景点下单链表
 				}
 				SToperatepoint->pv--;
 				SToperatepoint = MainSightTreePoint;									//操作指针归位
