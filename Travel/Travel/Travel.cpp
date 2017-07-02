@@ -114,7 +114,12 @@ int main() {
 				break;
 			}
 		}
-
+		//退出
+		while (UserID ==3)
+		{
+			break;
+		}
+		break;
 	}
 
 
