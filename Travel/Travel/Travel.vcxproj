@@ -23,6 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Guestchain.h" />
+    <ClInclude Include="SightAVLTree.h" />
     <ClInclude Include="SightTree.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

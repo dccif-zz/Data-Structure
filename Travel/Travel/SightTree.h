@@ -1,11 +1,13 @@
 #pragma once
 #include"Guestchain.h"
+#include<string>
 using namespace std;
 
 //景点的二叉排序树
 class sightTree {
 public:
 	int sightID;
+	string sightName;
 	sightTree *lchild;
 	sightTree *rchild;
 	guestchain *chain;//单链表指针
@@ -113,7 +115,7 @@ void sightTree::inorder(sightTree *tree)
 {
 	if (tree != NULL) {
 		inorder(tree->lchild);
-		cout << tree->sightID<<"	";
+		cout << tree->sightID << " 预约人数为：" << tree->pv << "	" << endl;
 		tree->chain->printall();
 		inorder(tree->rchild);
 	}
@@ -123,7 +125,8 @@ void sightTree::inorder(sightTree *tree)
 void sightTree::preorder(sightTree *tree)
 {
 	if (tree != NULL) {
-		cout << tree->sightID << endl;
+		cout << tree->sightID << " 预约人数为：" << tree->pv << "	" << endl;
+		tree->chain->printall();
 		inorder(tree->lchild);
 		inorder(tree->rchild);
 	}

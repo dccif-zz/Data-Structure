@@ -6,6 +6,13 @@
 
 using namespace std;
 
+void AllTreePrint(sightTree* tree) {				//总输出函数
+	cout << "中序遍历为："<<endl;
+	tree->inorder(tree);
+	cout << "前序遍历为：" << endl;
+	tree->preorder(tree);
+}
+
 //界面
 int main() {
 	int UserID;										//登录信息判别
@@ -24,7 +31,11 @@ int main() {
 	SToperatepoint = MainSightTreePoint;			//将操作指针初始化
 	STSearchpoint = MainSightTreePoint;				//初始化搜索指针
 
-	while (true)
+	bool UILoop = 1;
+	cout << "****************************************" << endl;
+	cout << "*       欢迎使用旅游信息管理系统       *"<<endl;
+	cout << "****************************************" << endl;		//初始化界面
+	while (UILoop)
 	{
 		cout << "请输入登录身份：（1：管理员，2：游客，3：退出）";
 		cin >> UserID;
@@ -39,14 +50,18 @@ int main() {
 				cout << "请输入节点：";
 				cin >> SightID;
 				MainSightTreePoint->insertnode(SightID, SToperatepoint);		//根据输入插入景点树
+				AllTreePrint(MainSightTreePoint);
+				system("cls");
 			}
 			if (OperateId == 2) {
 				cout << "请输入节点：";
 				cin >> SightID;
 				MainSightTreePoint->deletenode(SightID, SToperatepoint);		//根据输入删除景点树结点
+				AllTreePrint(MainSightTreePoint);
+				system("cls");
 			}
 			else if (OperateId == 3) {
-				MainSightTreePoint->inorder(MainSightTreePoint);
+				AllTreePrint(MainSightTreePoint);
 			}
 			else if (OperateId == 4) {
 				break;
@@ -66,7 +81,7 @@ int main() {
 			cin >> OperateId;
 
 			if (OperateId == 1) {
-				MainSightTreePoint->inorder(MainSightTreePoint);
+				AllTreePrint(MainSightTreePoint);
 			}
 			else if (OperateId == 2) {
 				cout << "请输入姓名：";
@@ -90,6 +105,7 @@ int main() {
 				}
 				SToperatepoint->pv++;
 				SToperatepoint = MainSightTreePoint;									//操作指针归位
+				AllTreePrint(MainSightTreePoint);
 			}
 			else if (OperateId == 3) {
 				cout << "请输入了景点代码：";
@@ -108,6 +124,7 @@ int main() {
 				}
 				SToperatepoint->pv--;
 				SToperatepoint = MainSightTreePoint;									//操作指针归位
+				AllTreePrint(MainSightTreePoint);
 			}
 			else if (OperateId == 4)
 			{
@@ -117,9 +134,10 @@ int main() {
 		//退出
 		while (UserID ==3)
 		{
+			UILoop = 0;
 			break;
 		}
-		break;
+		
 	}
 
 

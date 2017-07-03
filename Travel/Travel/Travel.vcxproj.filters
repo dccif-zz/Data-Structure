@@ -26,5 +26,8 @@
     <ClInclude Include="Guestchain.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="SightAVLTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
