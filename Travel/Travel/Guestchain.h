@@ -34,11 +34,14 @@ void guestchain::printall()
 	}
 	else
 	{
+		cout << "当前ID为：	" << "姓名：" << endl;
 		while (NULL != headpoint->next) {
-			cout << headpoint->name << "	";
+			cout << headpoint->guestId << "	 	";
+			cout << headpoint->name << endl;
 			headpoint = headpoint->next;
 		}
 	}
+	cout << headpoint->guestId << "		 ";
 	cout << headpoint->name << "	" << endl;
 }
 
@@ -97,6 +100,16 @@ int guestchain::countNum(guestchain *chpoint)
 guestchain* guestchain::chainsearch(int id, guestchain *&chainpoint)
 {
 	guestchain *prtbef = chainpoint;		//前驱指针
+	if (chainpoint->next == NULL) {
+		if (chainpoint->guestId == id) {
+			return prtbef;
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+
 	while (chainpoint->next != NULL)
 	{
 		prtbef = chainpoint;

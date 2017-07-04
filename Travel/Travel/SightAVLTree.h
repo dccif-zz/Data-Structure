@@ -36,8 +36,12 @@ public:
 	void preOrderAll();
 
 	void inOrder();
+	void inOrderPV();
+	void inOrderAll();
 
 	void postOrder();
+	void postOrderPV();
+	void postOrderAll();
 
 	//查找
 	sightAVLTreeNode* search(int newid);	//递归
@@ -50,7 +54,6 @@ public:
 	void remove(int newid);
 
 	void destory();
-	void print();
 
 private:
 	int height(sightAVLTreeNode* tree);
@@ -61,8 +64,12 @@ private:
 	void preOrderAll(sightAVLTreeNode *tree);
 
 	void inOrder(sightAVLTreeNode *tree);
+	void inOrderPV(sightAVLTreeNode *tree);
+	void inOrderAll(sightAVLTreeNode *tree);
 
 	void postOrder(sightAVLTreeNode *tree);
+	void postOrderPV(sightAVLTreeNode *tree);
+	void postOrderAll(sightAVLTreeNode *tree);
 
 	//查找
 	sightAVLTreeNode* search(int newid, sightAVLTreeNode *x);
@@ -113,7 +120,7 @@ void sightAVLTree::preOrder(sightAVLTreeNode* tree) {
 
 void sightAVLTree::preOrderPV(sightAVLTreeNode* tree) {
 	if (tree != NULL) {
-		cout << tree->sightID << " 名称："<<tree->sightName<<" 预约人数为：" << tree->pv << endl;
+		cout << tree->sightID << " 名称：" << tree->sightName << " 预约人数为：" << tree->pv << endl;
 		preOrderPV(tree->lchild);
 		preOrderPV(tree->rchild);
 	}
@@ -127,8 +134,6 @@ void sightAVLTree::preOrderAll(sightAVLTreeNode* tree) {
 		preOrderAll(tree->rchild);
 	}
 }
-
-
 
 void sightAVLTree::preOrder() {
 	preOrder(TreeRoot);
@@ -151,8 +156,35 @@ void sightAVLTree::inOrder(sightAVLTreeNode* tree) {
 	}
 }
 
+void sightAVLTree::inOrderPV(sightAVLTreeNode * tree)
+{
+	if (tree != NULL) {
+		inOrderPV(tree->lchild);
+		cout << tree->sightID << " 名称：" << tree->sightName << " 预约人数为：" << tree->pv << endl;
+		inOrderPV(tree->rchild);
+	}
+}
+
+void sightAVLTree::inOrderAll(sightAVLTreeNode * tree)
+{
+	if (tree != NULL) {
+		inOrderAll(tree->lchild);
+		cout << tree->sightID << " 名称：" << tree->sightName << " 预约人数为：" << tree->pv << endl;
+		tree->chain->printall();
+		inOrderAll(tree->rchild);
+	}
+}
+
 void sightAVLTree::inOrder() {
 	inOrder(TreeRoot);
+}
+void sightAVLTree::inOrderPV()
+{
+	inOrderPV(TreeRoot);
+}
+void sightAVLTree::inOrderAll()
+{
+	inOrderAll(TreeRoot);
 }
 //后序遍历
 void sightAVLTree::postOrder(sightAVLTreeNode* tree) {
@@ -163,8 +195,33 @@ void sightAVLTree::postOrder(sightAVLTreeNode* tree) {
 	}
 }
 
+void sightAVLTree::postOrderPV(sightAVLTreeNode * tree)
+{
+	postOrderPV(tree->lchild);
+	postOrderPV(tree->rchild);
+	cout << tree->sightID << " 名称：" << tree->sightName << " 预约人数为：" << tree->pv << endl;
+}
+
+void sightAVLTree::postOrderAll(sightAVLTreeNode * tree)
+{
+	postOrderAll(tree->lchild);
+	postOrderAll(tree->rchild);
+	cout << tree->sightID << " 名称：" << tree->sightName << " 预约人数为：" << tree->pv << endl;
+	tree->chain->printall();
+}
+
 void sightAVLTree::postOrder() {
 	postOrder(TreeRoot);
+}
+
+inline void sightAVLTree::postOrderPV()
+{
+	postOrderPV(TreeRoot);
+}
+
+void sightAVLTree::postOrderAll()
+{
+	postOrderAll(TreeRoot);
 }
 
 //查找景点
@@ -203,7 +260,6 @@ int sightAVLTree::minimun()
 
 	return (int)NULL;
 }
-
 
 sightAVLTreeNode * sightAVLTree::maximun(sightAVLTreeNode * tree)
 {
@@ -364,6 +420,7 @@ sightAVLTreeNode* sightAVLTree::remove(sightAVLTreeNode* &tree, sightAVLTreeNode
 				// 采用这种方式的好处是：删除"tree的左子树中最大节点"之后，AVL树仍然是平衡的。
 				sightAVLTreeNode* max = maximun(tree->lchild);
 				tree->sightID = max->sightID;
+				tree->sightName = max->sightName;
 				tree->lchild = remove(tree->lchild, max);
 			}
 			else
@@ -376,6 +433,7 @@ sightAVLTreeNode* sightAVLTree::remove(sightAVLTreeNode* &tree, sightAVLTreeNode
 				// 采用这种方式的好处是：删除"tree的右子树中最小节点"之后，AVL树仍然是平衡的。
 				sightAVLTreeNode* min = minimun(tree->rchild);
 				tree->sightID = min->sightID;
+				tree->sightName = min->sightName;
 				tree->rchild = remove(tree->rchild, min);
 			}
 		}
