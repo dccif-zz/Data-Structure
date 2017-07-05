@@ -9,15 +9,17 @@ using namespace std;
 
 //界面
 int main() {
-	int UserID;									//登录信息判别
+	int UserID;								//登录信息判别
 	int SightID;								//景点信息
-	int guestRandomId;							//游客信息
-	string GuestName;							//游客姓名
+	int guestRandomId;						//游客信息
+	string GuestName;						//游客姓名
 	string SightName;
 
 	guestchain* headguest;						//当前游客链表头指针，指向当前游客链表的头
 	guestchain* GCoperatepoint;					//当前游客链表的操作指针
+	guestchain* GCSearchPoint;
 	GCoperatepoint = NULL;
+	GCSearchPoint = NULL;
 
 	sightAVLTree* MainSightAVLTreePoint = new sightAVLTree();
 	sightAVLTreeNode* OperatePoint = NULL;			//结点操作指针
@@ -185,17 +187,18 @@ int main() {
 				cout << "请输入要删除的用户ID：";
 				cin >> guestRandomId;
 				inlinechain = OperatePoint->chain;
-				GCoperatepoint = OperatePoint->chain->chainsearch(guestRandomId, inlinechain);
+				GCSearchPoint = OperatePoint->chain;
+				GCoperatepoint = OperatePoint->chain->chainsearch(guestRandomId, GCSearchPoint);
 				while (GCoperatepoint == NULL) {
 					cout << "无此ID，请重新输入：";
 					cin >> guestRandomId;
-					GCoperatepoint = OperatePoint->chain->chainsearch(guestRandomId, inlinechain);
+					GCoperatepoint = OperatePoint->chain->chainsearch(guestRandomId, GCSearchPoint);
 				}
 
 				GCoperatepoint = OperatePoint->chain;												//如果当前景点下已有单链表，单链表操作指针指向当前树下结点
-				OperatePoint->chain = OperatePoint->chain->deletechain(guestRandomId, GCoperatepoint);							//删除当前景点下单链表
+				OperatePoint->chain = OperatePoint->chain->deletechain(guestRandomId, inlinechain);							//删除当前景点下单链表
 				cout << "删除成功！" << endl;
-
+				OperatePoint->chain->printall();
 				OperatePoint->pv--;
 				system("pause");
 			}
