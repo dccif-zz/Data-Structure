@@ -77,11 +77,13 @@ int main() {
 					cin >> SightID;
 					SearchPoint = MainSightAVLTreePoint->search(SightID);
 				}
-				if (SearchPoint->chain != NULL) {
+				if (SearchPoint->chain != NULL) 
+				{
 					cout << "当前景点下有游客，确定要删除吗？（Y/N）";
 					cin >> operate1;
 				}
-				else if (operate1 == "y" || operate1 == "Y") {
+				if (operate1 == "y" || operate1 == "Y") 
+				{
 					MainSightAVLTreePoint->remove(SightID);
 					cout << "删除成功！" << endl;
 					cout << "先序遍历为：" << endl;
