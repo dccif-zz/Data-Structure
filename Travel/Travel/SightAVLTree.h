@@ -13,24 +13,24 @@ public:
 	string sightName;
 	sightAVLTreeNode *lchild;
 	sightAVLTreeNode *rchild;
-	guestchain *chain;//µ¥Á´±íÖ¸Õë
+	guestchain *chain;//å•é“¾è¡¨æŒ‡é’ˆ
 	int flow;
 	int pv;
 
-	//¹¹Ôìº¯Êı
+	//æ„é€ å‡½æ•°
 	sightAVLTreeNode(int newid, string newname, sightAVLTreeNode *l, sightAVLTreeNode *r) :sightID(newid), sightName(newname), chain(NULL), lchild(l), rchild(r), flow(0), pv(0) {}
 };
 
-//¾°µãµÄ¶ş²æÅÅĞòÊ÷
+//æ™¯ç‚¹çš„äºŒå‰æ’åºæ ‘
 class sightAVLTree {
 public:
 	sightAVLTree() :TreeRoot(NULL) {}
 	~sightAVLTree() { destory(TreeRoot); }
-	//»ñÈ¡Ê÷¸ß¶È
+	//è·å–æ ‘é«˜åº¦
 	int height();
 	int max(int a, int b);
 
-	//±éÀúÊ÷
+	//éå†æ ‘
 	void preOrder();
 	void preOrderPV();
 	void preOrderAll();
@@ -43,14 +43,14 @@ public:
 	void postOrderPV();
 	void postOrderAll();
 
-	//²éÕÒ
-	sightAVLTreeNode* search(int newid);	//µİ¹é
+	//æŸ¥æ‰¾
+	sightAVLTreeNode* search(int newid);	//é€’å½’
 	int minimun();
 	int maximun();
 
-	//²åÈë
+	//æ’å…¥
 	void insert(int newid, string newname);
-	//É¾³ı
+	//åˆ é™¤
 	void remove(int newid);
 
 	void destory();
@@ -58,7 +58,7 @@ public:
 private:
 	int height(sightAVLTreeNode* tree);
 
-	//±éÀú
+	//éå†
 	void preOrder(sightAVLTreeNode *tree);
 	void preOrderPV(sightAVLTreeNode *tree);
 	void preOrderAll(sightAVLTreeNode *tree);
@@ -71,21 +71,21 @@ private:
 	void postOrderPV(sightAVLTreeNode *tree);
 	void postOrderAll(sightAVLTreeNode *tree);
 
-	//²éÕÒ
+	//æŸ¥æ‰¾
 	sightAVLTreeNode* search(int newid, sightAVLTreeNode *x);
 	sightAVLTreeNode* minimun(sightAVLTreeNode* tree);
 	sightAVLTreeNode* maximun(sightAVLTreeNode* tree);
 
-	//Ğı×ª
+	//æ—‹è½¬
 	sightAVLTreeNode* LLRotate(sightAVLTreeNode* k2);
 	sightAVLTreeNode* RRRotate(sightAVLTreeNode* k1);
 	sightAVLTreeNode* LRRotate(sightAVLTreeNode* k3);
 	sightAVLTreeNode* RLRotate(sightAVLTreeNode* k1);
 
-	//²åÈë
+	//æ’å…¥
 	sightAVLTreeNode* insert(sightAVLTreeNode* &tree, int newid, string newname);
 
-	//É¾³ı
+	//åˆ é™¤
 	sightAVLTreeNode* remove(sightAVLTreeNode* &tree, sightAVLTreeNode* z);
 
 	sightAVLTreeNode *TreeRoot;
@@ -109,7 +109,7 @@ int sightAVLTree::max(int a, int b) {
 	return a > b ? a : b;
 }
 
-//Ç°Ğò±éÀú
+//å‰åºéå†
 void sightAVLTree::preOrder(sightAVLTreeNode* tree) {
 	if (tree != NULL) {
 		cout << tree->sightID << " ";
@@ -120,7 +120,7 @@ void sightAVLTree::preOrder(sightAVLTreeNode* tree) {
 
 void sightAVLTree::preOrderPV(sightAVLTreeNode* tree) {
 	if (tree != NULL) {
-		cout << tree->sightID << " Ãû³Æ£º" << tree->sightName << " Ô¤Ô¼ÈËÊıÎª£º" << tree->pv << endl;
+		cout << tree->sightID << " åç§°ï¼š" << tree->sightName << " é¢„çº¦äººæ•°ä¸ºï¼š" << tree->pv << endl;
 		preOrderPV(tree->lchild);
 		preOrderPV(tree->rchild);
 	}
@@ -128,7 +128,7 @@ void sightAVLTree::preOrderPV(sightAVLTreeNode* tree) {
 
 void sightAVLTree::preOrderAll(sightAVLTreeNode* tree) {
 	if (tree != NULL) {
-		cout << tree->sightID << " Ãû³Æ£º" << tree->sightName << " Ô¤Ô¼ÈËÊıÎª£º" << tree->pv << endl;
+		cout << tree->sightID << " åç§°ï¼š" << tree->sightName << " é¢„çº¦äººæ•°ä¸ºï¼š" << tree->pv << endl;
 		tree->chain->printall();
 		preOrderAll(tree->lchild);
 		preOrderAll(tree->rchild);
@@ -147,7 +147,7 @@ void sightAVLTree::preOrderAll() {
 	preOrderAll(TreeRoot);
 }
 
-//ÖĞĞò±éÀú
+//ä¸­åºéå†
 void sightAVLTree::inOrder(sightAVLTreeNode* tree) {
 	if (tree != NULL) {
 		inOrder(tree->lchild);
@@ -160,7 +160,7 @@ void sightAVLTree::inOrderPV(sightAVLTreeNode * tree)
 {
 	if (tree != NULL) {
 		inOrderPV(tree->lchild);
-		cout << tree->sightID << " Ãû³Æ£º" << tree->sightName << " Ô¤Ô¼ÈËÊıÎª£º" << tree->pv << endl;
+		cout << tree->sightID << " åç§°ï¼š" << tree->sightName << " é¢„çº¦äººæ•°ä¸ºï¼š" << tree->pv << endl;
 		inOrderPV(tree->rchild);
 	}
 }
@@ -169,7 +169,7 @@ void sightAVLTree::inOrderAll(sightAVLTreeNode * tree)
 {
 	if (tree != NULL) {
 		inOrderAll(tree->lchild);
-		cout << tree->sightID << " Ãû³Æ£º" << tree->sightName << " Ô¤Ô¼ÈËÊıÎª£º" << tree->pv << endl;
+		cout << tree->sightID << " åç§°ï¼š" << tree->sightName << " é¢„çº¦äººæ•°ä¸ºï¼š" << tree->pv << endl;
 		tree->chain->printall();
 		inOrderAll(tree->rchild);
 	}
@@ -186,7 +186,7 @@ void sightAVLTree::inOrderAll()
 {
 	inOrderAll(TreeRoot);
 }
-//ºóĞò±éÀú
+//ååºéå†
 void sightAVLTree::postOrder(sightAVLTreeNode* tree) {
 	if (tree != NULL) {
 		postOrder(tree->lchild);
@@ -199,14 +199,14 @@ void sightAVLTree::postOrderPV(sightAVLTreeNode * tree)
 {
 	postOrderPV(tree->lchild);
 	postOrderPV(tree->rchild);
-	cout << tree->sightID << " Ãû³Æ£º" << tree->sightName << " Ô¤Ô¼ÈËÊıÎª£º" << tree->pv << endl;
+	cout << tree->sightID << " åç§°ï¼š" << tree->sightName << " é¢„çº¦äººæ•°ä¸ºï¼š" << tree->pv << endl;
 }
 
 void sightAVLTree::postOrderAll(sightAVLTreeNode * tree)
 {
 	postOrderAll(tree->lchild);
 	postOrderAll(tree->rchild);
-	cout << tree->sightID << " Ãû³Æ£º" << tree->sightName << " Ô¤Ô¼ÈËÊıÎª£º" << tree->pv << endl;
+	cout << tree->sightID << " åç§°ï¼š" << tree->sightName << " é¢„çº¦äººæ•°ä¸ºï¼š" << tree->pv << endl;
 	tree->chain->printall();
 }
 
@@ -224,7 +224,7 @@ void sightAVLTree::postOrderAll()
 	postOrderAll(TreeRoot);
 }
 
-//²éÕÒ¾°µã
+//æŸ¥æ‰¾æ™¯ç‚¹
 sightAVLTreeNode * sightAVLTree::search(int newid, sightAVLTreeNode * x)
 {
 	if (x == NULL || x->sightID == newid)
@@ -281,7 +281,7 @@ int sightAVLTree::maximun() {
 	return (int)NULL;
 }
 
-//LLĞı×ª
+//LLæ—‹è½¬
 sightAVLTreeNode* sightAVLTree::LLRotate(sightAVLTreeNode* k2) {
 	sightAVLTreeNode* k1;
 	k1 = k2->lchild;
@@ -293,7 +293,7 @@ sightAVLTreeNode* sightAVLTree::LLRotate(sightAVLTreeNode* k2) {
 
 	return k1;
 }
-//RRĞı×ª
+//RRæ—‹è½¬
 sightAVLTreeNode* sightAVLTree::RRRotate(sightAVLTreeNode* k1) {
 	sightAVLTreeNode* k2;
 
@@ -306,13 +306,13 @@ sightAVLTreeNode* sightAVLTree::RRRotate(sightAVLTreeNode* k1) {
 
 	return k2;
 }
-//LRĞı×ª
+//LRæ—‹è½¬
 sightAVLTreeNode* sightAVLTree::LRRotate(sightAVLTreeNode* k3) {
 	k3->lchild = RRRotate(k3->lchild);
 
 	return LLRotate(k3);
 }
-//RLĞı×ª
+//RLæ—‹è½¬
 sightAVLTreeNode* sightAVLTree::RLRotate(sightAVLTreeNode* k1) {
 	k1->rchild = LLRotate(k1->rchild);
 
@@ -320,12 +320,12 @@ sightAVLTreeNode* sightAVLTree::RLRotate(sightAVLTreeNode* k1) {
 }
 
 
-//²åÈë½Úµã
+//æ’å…¥èŠ‚ç‚¹
 sightAVLTreeNode* sightAVLTree::insert(sightAVLTreeNode* &tree, int newid, string newname)
 {
 	if (tree == NULL)
 	{
-		// ĞÂ½¨½Úµã
+		// æ–°å»ºèŠ‚ç‚¹
 		tree = new sightAVLTreeNode(newid, newname, NULL, NULL);
 		if (tree == NULL)
 		{
@@ -333,10 +333,10 @@ sightAVLTreeNode* sightAVLTree::insert(sightAVLTreeNode* &tree, int newid, strin
 			return NULL;
 		}
 	}
-	else if (newid < tree->sightID) // Ó¦¸Ã½«key²åÈëµ½"treeµÄ×ó×ÓÊ÷"µÄÇé¿ö
+	else if (newid < tree->sightID) // åº”è¯¥å°†keyæ’å…¥åˆ°"treeçš„å·¦å­æ ‘"çš„æƒ…å†µ
 	{
 		tree->lchild = insert(tree->lchild, newid, newname);
-		// ²åÈë½Úµãºó£¬ÈôAVLÊ÷Ê§È¥Æ½ºâ£¬Ôò½øĞĞÏàÓ¦µÄµ÷½Ú¡£
+		// æ’å…¥èŠ‚ç‚¹åï¼Œè‹¥AVLæ ‘å¤±å»å¹³è¡¡ï¼Œåˆ™è¿›è¡Œç›¸åº”çš„è°ƒèŠ‚ã€‚
 		if (height(tree->lchild) - height(tree->rchild) == 2)
 		{
 			if (newid < tree->lchild->sightID)
@@ -345,10 +345,10 @@ sightAVLTreeNode* sightAVLTree::insert(sightAVLTreeNode* &tree, int newid, strin
 				tree = LRRotate(tree);
 		}
 	}
-	else if (newid > tree->sightID) // Ó¦¸Ã½«key²åÈëµ½"treeµÄÓÒ×ÓÊ÷"µÄÇé¿ö
+	else if (newid > tree->sightID) // åº”è¯¥å°†keyæ’å…¥åˆ°"treeçš„å³å­æ ‘"çš„æƒ…å†µ
 	{
 		tree->rchild = insert(tree->rchild, newid, newname);
-		// ²åÈë½Úµãºó£¬ÈôAVLÊ÷Ê§È¥Æ½ºâ£¬Ôò½øĞĞÏàÓ¦µÄµ÷½Ú¡£
+		// æ’å…¥èŠ‚ç‚¹åï¼Œè‹¥AVLæ ‘å¤±å»å¹³è¡¡ï¼Œåˆ™è¿›è¡Œç›¸åº”çš„è°ƒèŠ‚ã€‚
 		if (height(tree->rchild) - height(tree->lchild) == 2)
 		{
 			if (newid > tree->rchild->sightID)
@@ -359,7 +359,7 @@ sightAVLTreeNode* sightAVLTree::insert(sightAVLTreeNode* &tree, int newid, strin
 	}
 	else //key == tree->key)
 	{
-		cout << "Ìí¼ÓÊ§°Ü£º²»ÔÊĞíÌí¼ÓÏàÍ¬µÄ½Úµã£¡" << endl;
+		cout << "æ·»åŠ å¤±è´¥ï¼šä¸å…è®¸æ·»åŠ ç›¸åŒçš„èŠ‚ç‚¹ï¼" << endl;
 	}
 
 	tree->height = max(height(tree->lchild), height(tree->rchild)) + 1;
@@ -372,17 +372,17 @@ void sightAVLTree::insert(int newid, string itsname)
 	insert(TreeRoot, newid, itsname);
 }
 
-//É¾³ı½Úµã
+//åˆ é™¤èŠ‚ç‚¹
 sightAVLTreeNode* sightAVLTree::remove(sightAVLTreeNode* &tree, sightAVLTreeNode* z)
 {
-	// ¸ùÎª¿Õ »òÕß Ã»ÓĞÒªÉ¾³ıµÄ½Úµã£¬Ö±½Ó·µ»ØNULL¡£
+	// æ ¹ä¸ºç©º æˆ–è€… æ²¡æœ‰è¦åˆ é™¤çš„èŠ‚ç‚¹ï¼Œç›´æ¥è¿”å›NULLã€‚
 	if (tree == NULL || z == NULL)
 		return NULL;
 
-	if (z->sightID < tree->sightID)        // ´ıÉ¾³ıµÄ½ÚµãÔÚ"treeµÄ×ó×ÓÊ÷"ÖĞ
+	if (z->sightID < tree->sightID)        // å¾…åˆ é™¤çš„èŠ‚ç‚¹åœ¨"treeçš„å·¦å­æ ‘"ä¸­
 	{
 		tree->lchild = remove(tree->lchild, z);
-		// É¾³ı½Úµãºó£¬ÈôAVLÊ÷Ê§È¥Æ½ºâ£¬Ôò½øĞĞÏàÓ¦µÄµ÷½Ú¡£
+		// åˆ é™¤èŠ‚ç‚¹åï¼Œè‹¥AVLæ ‘å¤±å»å¹³è¡¡ï¼Œåˆ™è¿›è¡Œç›¸åº”çš„è°ƒèŠ‚ã€‚
 		if (height(tree->rchild) - height(tree->lchild) == 2)
 		{
 			sightAVLTreeNode *r = tree->rchild;
@@ -392,10 +392,10 @@ sightAVLTreeNode* sightAVLTree::remove(sightAVLTreeNode* &tree, sightAVLTreeNode
 				tree = RRRotate(tree);
 		}
 	}
-	else if (z->sightID > tree->sightID)// ´ıÉ¾³ıµÄ½ÚµãÔÚ"treeµÄÓÒ×ÓÊ÷"ÖĞ
+	else if (z->sightID > tree->sightID)// å¾…åˆ é™¤çš„èŠ‚ç‚¹åœ¨"treeçš„å³å­æ ‘"ä¸­
 	{
 		tree->rchild = remove(tree->rchild, z);
-		// É¾³ı½Úµãºó£¬ÈôAVLÊ÷Ê§È¥Æ½ºâ£¬Ôò½øĞĞÏàÓ¦µÄµ÷½Ú¡£
+		// åˆ é™¤èŠ‚ç‚¹åï¼Œè‹¥AVLæ ‘å¤±å»å¹³è¡¡ï¼Œåˆ™è¿›è¡Œç›¸åº”çš„è°ƒèŠ‚ã€‚
 		if (height(tree->lchild) - height(tree->rchild) == 2)
 		{
 			sightAVLTreeNode *l = tree->lchild;
@@ -405,19 +405,19 @@ sightAVLTreeNode* sightAVLTree::remove(sightAVLTreeNode* &tree, sightAVLTreeNode
 				tree = LLRotate(tree);
 		}
 	}
-	else    // treeÊÇ¶ÔÓ¦ÒªÉ¾³ıµÄ½Úµã¡£
+	else    // treeæ˜¯å¯¹åº”è¦åˆ é™¤çš„èŠ‚ç‚¹ã€‚
 	{
-		// treeµÄ×óÓÒº¢×Ó¶¼·Ç¿Õ
+		// treeçš„å·¦å³å­©å­éƒ½éç©º
 		if ((tree->lchild != NULL) && (tree->rchild != NULL))
 		{
 			if (height(tree->lchild) > height(tree->rchild))
 			{
-				// Èç¹ûtreeµÄ×ó×ÓÊ÷±ÈÓÒ×ÓÊ÷¸ß£»
-				// Ôò(01)ÕÒ³ötreeµÄ×ó×ÓÊ÷ÖĞµÄ×î´ó½Úµã
-				//   (02)½«¸Ã×î´ó½ÚµãµÄÖµ¸³Öµ¸øtree¡£
-				//   (03)É¾³ı¸Ã×î´ó½Úµã¡£
-				// ÕâÀàËÆÓÚÓÃ"treeµÄ×ó×ÓÊ÷ÖĞ×î´ó½Úµã"×ö"tree"µÄÌæÉí£»
-				// ²ÉÓÃÕâÖÖ·½Ê½µÄºÃ´¦ÊÇ£ºÉ¾³ı"treeµÄ×ó×ÓÊ÷ÖĞ×î´ó½Úµã"Ö®ºó£¬AVLÊ÷ÈÔÈ»ÊÇÆ½ºâµÄ¡£
+				// å¦‚æœtreeçš„å·¦å­æ ‘æ¯”å³å­æ ‘é«˜ï¼›
+				// åˆ™(01)æ‰¾å‡ºtreeçš„å·¦å­æ ‘ä¸­çš„æœ€å¤§èŠ‚ç‚¹
+				//   (02)å°†è¯¥æœ€å¤§èŠ‚ç‚¹çš„å€¼èµ‹å€¼ç»™treeã€‚
+				//   (03)åˆ é™¤è¯¥æœ€å¤§èŠ‚ç‚¹ã€‚
+				// è¿™ç±»ä¼¼äºç”¨"treeçš„å·¦å­æ ‘ä¸­æœ€å¤§èŠ‚ç‚¹"åš"tree"çš„æ›¿èº«ï¼›
+				// é‡‡ç”¨è¿™ç§æ–¹å¼çš„å¥½å¤„æ˜¯ï¼šåˆ é™¤"treeçš„å·¦å­æ ‘ä¸­æœ€å¤§èŠ‚ç‚¹"ä¹‹åï¼ŒAVLæ ‘ä»ç„¶æ˜¯å¹³è¡¡çš„ã€‚
 				sightAVLTreeNode* max = maximun(tree->lchild);
 				tree->sightID = max->sightID;
 				tree->sightName = max->sightName;
@@ -425,12 +425,12 @@ sightAVLTreeNode* sightAVLTree::remove(sightAVLTreeNode* &tree, sightAVLTreeNode
 			}
 			else
 			{
-				// Èç¹ûtreeµÄ×ó×ÓÊ÷²»±ÈÓÒ×ÓÊ÷¸ß(¼´ËüÃÇÏàµÈ£¬»òÓÒ×ÓÊ÷±È×ó×ÓÊ÷¸ß1)
-				// Ôò(01)ÕÒ³ötreeµÄÓÒ×ÓÊ÷ÖĞµÄ×îĞ¡½Úµã
-				//   (02)½«¸Ã×îĞ¡½ÚµãµÄÖµ¸³Öµ¸øtree¡£
-				//   (03)É¾³ı¸Ã×îĞ¡½Úµã¡£
-				// ÕâÀàËÆÓÚÓÃ"treeµÄÓÒ×ÓÊ÷ÖĞ×îĞ¡½Úµã"×ö"tree"µÄÌæÉí£»
-				// ²ÉÓÃÕâÖÖ·½Ê½µÄºÃ´¦ÊÇ£ºÉ¾³ı"treeµÄÓÒ×ÓÊ÷ÖĞ×îĞ¡½Úµã"Ö®ºó£¬AVLÊ÷ÈÔÈ»ÊÇÆ½ºâµÄ¡£
+				// å¦‚æœtreeçš„å·¦å­æ ‘ä¸æ¯”å³å­æ ‘é«˜(å³å®ƒä»¬ç›¸ç­‰ï¼Œæˆ–å³å­æ ‘æ¯”å·¦å­æ ‘é«˜1)
+				// åˆ™(01)æ‰¾å‡ºtreeçš„å³å­æ ‘ä¸­çš„æœ€å°èŠ‚ç‚¹
+				//   (02)å°†è¯¥æœ€å°èŠ‚ç‚¹çš„å€¼èµ‹å€¼ç»™treeã€‚
+				//   (03)åˆ é™¤è¯¥æœ€å°èŠ‚ç‚¹ã€‚
+				// è¿™ç±»ä¼¼äºç”¨"treeçš„å³å­æ ‘ä¸­æœ€å°èŠ‚ç‚¹"åš"tree"çš„æ›¿èº«ï¼›
+				// é‡‡ç”¨è¿™ç§æ–¹å¼çš„å¥½å¤„æ˜¯ï¼šåˆ é™¤"treeçš„å³å­æ ‘ä¸­æœ€å°èŠ‚ç‚¹"ä¹‹åï¼ŒAVLæ ‘ä»ç„¶æ˜¯å¹³è¡¡çš„ã€‚
 				sightAVLTreeNode* min = minimun(tree->rchild);
 				tree->sightID = min->sightID;
 				tree->sightName = min->sightName;

@@ -1,45 +1,45 @@
-//ÏßĞÔË³Ğò±í
+//çº¿æ€§é¡ºåºè¡¨
 #include <stdio.h>
 #include <stdlib.h>
-#define LIST_INIT_SIZE 1000 //ÏßĞÔ±í´æ´¢¿Õ¼äµÄ³õÊ¼·ÖÅäÁ¿
-#define LISTINCRESEMENT 100 //ÏßĞÔ±í´æ´¢¿Õ¼äµÄ·ÖÅäÔöÁ¿
+#define LIST_INIT_SIZE 1000 //çº¿æ€§è¡¨å­˜å‚¨ç©ºé—´çš„åˆå§‹åˆ†é…é‡
+#define LISTINCRESEMENT 100 //çº¿æ€§è¡¨å­˜å‚¨ç©ºé—´çš„åˆ†é…å¢é‡
 #define	OK 1
 #define ERROR 0
 #define OVERFLOW -2
-typedef int elemType;//ÔªËØÀàĞÍ
+typedef int elemType;//å…ƒç´ ç±»å‹
 
 typedef struct
 {
-	elemType *List;//ÏßĞÔ±íÊ×µØÖ·
-	int length;//µ±Ç°µÄ³¤¶È
-	int listsize;//µ±Ç°·ÖÅäµÄ´æ´¢ÈİÁ¿£¬ÒÔelemTypeÎªµ¥Î»
+	elemType *List;//çº¿æ€§è¡¨é¦–åœ°å€
+	int length;//å½“å‰çš„é•¿åº¦
+	int listsize;//å½“å‰åˆ†é…çš„å­˜å‚¨å®¹é‡ï¼Œä»¥elemTypeä¸ºå•ä½
 } SqList;
 
-void AgainMalloc(SqList *L)//¿Õ¼ä²»¹»Ê±ÖØĞÂ·ÖÅä¿Õ¼äµÄº¯Êı
+void AgainMalloc(SqList *L)//ç©ºé—´ä¸å¤Ÿæ—¶é‡æ–°åˆ†é…ç©ºé—´çš„å‡½æ•°
 {
-	elemType *newbase;//·ÖÅäÒ»¸öÁÙÊ±»ùÖ·
+	elemType *newbase;//åˆ†é…ä¸€ä¸ªä¸´æ—¶åŸºå€
 	newbase = (elemType *)realloc(L->List, (L->listsize + LISTINCRESEMENT) * sizeof(elemType));
 	if (!newbase) exit(OVERFLOW);
 	L->List = newbase;
 	L->listsize += LISTINCRESEMENT;
 }
 
-//³õÊ¼»¯Ò»¸ö¿ÕµÄÏßĞÔ±í
+//åˆå§‹åŒ–ä¸€ä¸ªç©ºçš„çº¿æ€§è¡¨
 int InitList_Sq(SqList *L)
 {
 	L->List = (elemType *)malloc(LIST_INIT_SIZE * sizeof(elemType));
 	if (!L->List)exit(OVERFLOW);//overflow
-	L->length = 0;//³õÊ¼±íÎª¿Õ±í
-	L->listsize = LIST_INIT_SIZE;//³õÊ¼±íµÄ´æ´¢ÈİÁ¿£¬ÎªLIST_INIT_SIZE¸öelemTypeµ¥Î»
+	L->length = 0;//åˆå§‹è¡¨ä¸ºç©ºè¡¨
+	L->listsize = LIST_INIT_SIZE;//åˆå§‹è¡¨çš„å­˜å‚¨å®¹é‡ï¼Œä¸ºLIST_INIT_SIZEä¸ªelemTypeå•ä½
 	return OK;
 }
-//Çó±íÖĞÔªËØµÄ¸öÊı
+//æ±‚è¡¨ä¸­å…ƒç´ çš„ä¸ªæ•°
 int ListLength(SqList *L)
 {
 	return L->length;
 }
 
-//±éÀúË³Ğò±í
+//éå†é¡ºåºè¡¨
 void TraverseList(SqList *L)
 {
 	int i;
@@ -50,7 +50,7 @@ void TraverseList(SqList *L)
 	printf("\n");
 	return;
 }
-//Ïò±íÍ·²åÈëÔªËØ
+//å‘è¡¨å¤´æ’å…¥å…ƒç´ 
 void InsertFirst(SqList *L, elemType e)
 {
 	int i;
@@ -63,7 +63,7 @@ void InsertFirst(SqList *L, elemType e)
 	return;
 }
 
-//Ïò±íÎ²²åÈëÔªËØ
+//å‘è¡¨å°¾æ’å…¥å…ƒç´ 
 void InsertLast(SqList *L, elemType e)
 {
 
@@ -73,12 +73,12 @@ void InsertLast(SqList *L, elemType e)
 	L->length++;
 	return;
 }
-//ÔÚ±íÖĞµÚpos¸öÎ»ÖÃÖ®Ç°²åÈëĞÂÔªËØe
+//åœ¨è¡¨ä¸­ç¬¬posä¸ªä½ç½®ä¹‹å‰æ’å…¥æ–°å…ƒç´ e
 int Insert_Sq(SqList *L, elemType e, int pos)
 {
 	int i;
 	if (pos<1 || pos>L->length + 1) return ERROR;
-	if (L->length >= L->listsize)//´æ´¢¿Õ¼ä²»¹»£¬Òª·ÖÅäĞÂµÄ¿Õ¼ä
+	if (L->length >= L->listsize)//å­˜å‚¨ç©ºé—´ä¸å¤Ÿï¼Œè¦åˆ†é…æ–°çš„ç©ºé—´
 		AgainMalloc(L);
 	for (i = L->length - 1; i >= pos - 1; i--)
 		L->List[i + 1] = L->List[i];
@@ -86,7 +86,7 @@ int Insert_Sq(SqList *L, elemType e, int pos)
 	L->length++;
 	//return OK;
 }
-//²éÕÒ¸ø³öÔªËØµÄÎ»ÖÃ£¬Èô´æÔÚ£¬¸ø³öÎ»ÖÃ(´Ó1¿ªÊ¼Ëã)£»Èô²»´æÔÚ£¬·µ»Ø-1
+//æŸ¥æ‰¾ç»™å‡ºå…ƒç´ çš„ä½ç½®ï¼Œè‹¥å­˜åœ¨ï¼Œç»™å‡ºä½ç½®(ä»1å¼€å§‹ç®—)ï¼›è‹¥ä¸å­˜åœ¨ï¼Œè¿”å›-1
 void Search(SqList *L, elemType e)
 {
 	int i;
@@ -94,21 +94,21 @@ void Search(SqList *L, elemType e)
 	{
 		if (L->List[i] == e)
 		{
-			printf("ÕÒµ½£¬%dÔÚµÚ%d¸öÎ»ÖÃ\n", e, i + 1);
+			printf("æ‰¾åˆ°ï¼Œ%dåœ¨ç¬¬%dä¸ªä½ç½®\n", e, i + 1);
 			return;
 		}
 	}
-	printf("Ã»ÕÒµ½\n");
+	printf("æ²¡æ‰¾åˆ°\n");
 	return;
 }
-//É¾³ıµÚpos¸öÔªËØ£¬²¢·µ»ØÆäÖµ
+//åˆ é™¤ç¬¬posä¸ªå…ƒç´ ï¼Œå¹¶è¿”å›å…¶å€¼
 elemType DeleteElem(SqList *L, int pos)
 {
 	int i;
 	elemType temp;
 	if (pos<1 || pos>L->length)
 	{
-		printf("posÖµÔ½½ç\n");
+		printf("poså€¼è¶Šç•Œ\n");
 		exit(1);
 	}
 	temp = L->List[pos - 1];
@@ -117,7 +117,7 @@ elemType DeleteElem(SqList *L, int pos)
 	L->length--;
 	return temp;
 }
-//ÅĞ¶ÏÏßĞÔ±íÊÇ·ñÎª¿Õ£¬Îª¿Õ·µ»Ø1£¬²»Îª¿Õ·µ»Ø0
+//åˆ¤æ–­çº¿æ€§è¡¨æ˜¯å¦ä¸ºç©ºï¼Œä¸ºç©ºè¿”å›1ï¼Œä¸ä¸ºç©ºè¿”å›0
 int isEmpty(SqList *L)
 {
 	if (L->length == 0)
@@ -140,19 +140,19 @@ int main()
 		scanf_s("%d", &temp);
 		InsertLast(&list1, temp);
 	}
-	printf("´´½¨ºÃµÄÏßĞÔ±íLa=");
-	TraverseList(&list1);//´´½¨ºÃµÄË³Ğò±í
+	printf("åˆ›å»ºå¥½çš„çº¿æ€§è¡¨La=");
+	TraverseList(&list1);//åˆ›å»ºå¥½çš„é¡ºåºè¡¨
 	int pos;
 	scanf_s("%d%d", &temp, &pos);
 	Insert_Sq(&list1, temp, pos);
-	printf("²åÈëÒ»¸öÔªËØºóµÄÏßĞÔ±íLa=");
-	TraverseList(&list1);//²åÈëÒ»¸öÊı×ÖºóµÄÏßĞÔ±í
+	printf("æ’å…¥ä¸€ä¸ªå…ƒç´ åçš„çº¿æ€§è¡¨La=");
+	TraverseList(&list1);//æ’å…¥ä¸€ä¸ªæ•°å­—åçš„çº¿æ€§è¡¨
 	scanf_s("%d", &pos);
 	DeleteElem(&list1, pos);
-	printf("É¾³ıÒ»¸öÔªËØºóµÄÏßĞÔ±íLa=");
+	printf("åˆ é™¤ä¸€ä¸ªå…ƒç´ åçš„çº¿æ€§è¡¨La=");
 	TraverseList(&list1);
 	scanf_s("%d", &temp);
-	Search(&list1, temp);//²éÕÒÔªËØ
+	Search(&list1, temp);//æŸ¥æ‰¾å…ƒç´ 
 
 	TraverseList(&list1);
 	

@@ -9,12 +9,12 @@ typedef struct Node
 	ElemType data;
 	struct Node *next;
 } LNode, *LinkList;
-void Build(LinkList L)//½¨Á¢Ò»¸ö´øÍ·½áµãµÄµ¥Á´±í
+void Build(LinkList L)//å»ºç«‹ä¸€ä¸ªå¸¦å¤´ç»“ç‚¹çš„å•é“¾è¡¨
 {
 	int n;
 	LinkList p, q;
 	p = L;
-	printf("ÇëÊäÈënºÍn¸öÊı¾İÔªËØ:\n");
+	printf("è¯·è¾“å…¥nå’Œnä¸ªæ•°æ®å…ƒç´ :\n");
 	scanf("%d", &n);
 	while (n--)
 	{
@@ -25,7 +25,7 @@ void Build(LinkList L)//½¨Á¢Ò»¸ö´øÍ·½áµãµÄµ¥Á´±í
 		p = q;
 	}
 }
-void Print(LinkList L)//¼ÆËãµ¥Á´±íµÄ³¤¶È£¬È»ºóÊä³öµ¥Á´±í
+void Print(LinkList L)//è®¡ç®—å•é“¾è¡¨çš„é•¿åº¦ï¼Œç„¶åè¾“å‡ºå•é“¾è¡¨
 {
 	int num = 0;
 	LinkList p;
@@ -36,20 +36,20 @@ void Print(LinkList L)//¼ÆËãµ¥Á´±íµÄ³¤¶È£¬È»ºóÊä³öµ¥Á´±í
 		printf("%d ", p->data);
 		p = p->next;
 	}
-	printf("\n³¤¶ÈÎª%d:\n", num);
+	printf("\né•¿åº¦ä¸º%d:\n", num);
 }
 void Tips()
 {
-	printf("°´Êı×Ö¼üÑ¡ÔñÏàÓ¦²Ù×÷\n");
-	printf("<1> Êä³öµ¥Á´±í¼°Æä³¤¶È:\n");
-	printf("<2> É¾³ıÖµÎªxµÄ½áµã:\n");
-	printf("<3> ½«±íÖĞÔªËØÄæÖÃ:\n");
-	printf("<4> É¾³ı±íÖĞËùÓĞÖµÏàÍ¬µÄ¶àÓàÔªËØ:\n");
-	printf("<5> ²åÈëÔªËØ:\n");
-	printf("<0> ÍË³ö:\n");
+	printf("æŒ‰æ•°å­—é”®é€‰æ‹©ç›¸åº”æ“ä½œ\n");
+	printf("<1> è¾“å‡ºå•é“¾è¡¨åŠå…¶é•¿åº¦:\n");
+	printf("<2> åˆ é™¤å€¼ä¸ºxçš„ç»“ç‚¹:\n");
+	printf("<3> å°†è¡¨ä¸­å…ƒç´ é€†ç½®:\n");
+	printf("<4> åˆ é™¤è¡¨ä¸­æ‰€æœ‰å€¼ç›¸åŒçš„å¤šä½™å…ƒç´ :\n");
+	printf("<5> æ’å…¥å…ƒç´ :\n");
+	printf("<0> é€€å‡º:\n");
 }
 
-void Delete(LinkList L, int x)//É¾³ıÖµÎªxµÄ½áµã
+void Delete(LinkList L, int x)//åˆ é™¤å€¼ä¸ºxçš„ç»“ç‚¹
 {
 	LinkList p, q;
 	p = L;
@@ -60,12 +60,12 @@ void Delete(LinkList L, int x)//É¾³ıÖµÎªxµÄ½áµã
 		q = p->next;
 		p->next = q->next;
 		free(q);
-		printf("É¾³ı³É¹¦!!\n\n");
+		printf("åˆ é™¤æˆåŠŸ!!\n\n");
 	}
 	else
-		printf("Á´±íÖĞÃ»ÓĞ%d\n\n", x);
+		printf("é“¾è¡¨ä¸­æ²¡æœ‰%d\n\n", x);
 }
-void NiZhi(LinkList L)//°Ñµ¥ÏòÁ´±íÖĞÔªËØÄæÖÃ,ÀàËÆÓÚÍ·²å·¨½¨Á¢Á´±í!
+void NiZhi(LinkList L)//æŠŠå•å‘é“¾è¡¨ä¸­å…ƒç´ é€†ç½®,ç±»ä¼¼äºå¤´æ’æ³•å»ºç«‹é“¾è¡¨!
 {
 	LinkList p, s;
 	p = s = L->next;
@@ -77,10 +77,10 @@ void NiZhi(LinkList L)//°Ñµ¥ÏòÁ´±íÖĞÔªËØÄæÖÃ,ÀàËÆÓÚÍ·²å·¨½¨Á¢Á´±í!
 		L->next = p;
 		p = s;
 	}
-	printf("ÄæÖÃ³É¹¦!!!\n\n");
+	printf("é€†ç½®æˆåŠŸ!!!\n\n");
 }
 
-void Delete2(LinkList L)//É¾³ı±íÖĞËùÓĞÖµÏàÍ¬µÄ¶àÓàÔªËØ£¨Ê¹µÃ²Ù×÷ºóµÄÏßĞÔ±íÖĞËùÓĞÔªËØµÄÖµ¾ù²»ÏàÍ¬£©£¬
+void Delete2(LinkList L)//åˆ é™¤è¡¨ä¸­æ‰€æœ‰å€¼ç›¸åŒçš„å¤šä½™å…ƒç´ ï¼ˆä½¿å¾—æ“ä½œåçš„çº¿æ€§è¡¨ä¸­æ‰€æœ‰å…ƒç´ çš„å€¼å‡ä¸ç›¸åŒï¼‰ï¼Œ
 {
 	LinkList p, q, s;
 	p = L;
@@ -100,10 +100,10 @@ void Delete2(LinkList L)//É¾³ı±íÖĞËùÓĞÖµÏàÍ¬µÄ¶àÓàÔªËØ£¨Ê¹µÃ²Ù×÷ºóµÄÏßĞÔ±íÖĞËùÓĞ
 			q = q->next;
 		}
 	}
-	printf("É¾³ı³É¹¦!!!!\n");
+	printf("åˆ é™¤æˆåŠŸ!!!!\n");
 }
 
-void Insert(LinkList L, LinkList p)//ÔÚÉıĞòÁ´±í²åÈëÖµÎªXµÄ½áµã£¬Ê¹ÈÔÈ»ÓĞĞò
+void Insert(LinkList L, LinkList p)//åœ¨å‡åºé“¾è¡¨æ’å…¥å€¼ä¸ºXçš„ç»“ç‚¹ï¼Œä½¿ä»ç„¶æœ‰åº
 {
 	LinkList s;
 	s = L;
@@ -112,7 +112,7 @@ void Insert(LinkList L, LinkList p)//ÔÚÉıĞòÁ´±í²åÈëÖµÎªXµÄ½áµã£¬Ê¹ÈÔÈ»ÓĞĞò
 	p->next = s->next;
 	s->next = p;
 }
-status Sort(LinkList L)//°´ÉıĞòÅÅÁĞ
+status Sort(LinkList L)//æŒ‰å‡åºæ’åˆ—
 {
 	LinkList s, r;
 	s = L->next;
@@ -144,7 +144,7 @@ int main()
 			Print(L);
 			break;
 		case 2:
-			printf("ÇëÊäÈëÒª²éÕÒµÄÉ¾³ıX:\n");
+			printf("è¯·è¾“å…¥è¦æŸ¥æ‰¾çš„åˆ é™¤X:\n");
 			scanf("%d", &x);
 			Delete(L, x);
 			break;
@@ -155,12 +155,12 @@ int main()
 			Delete2(L);
 			break;
 		case 5:
-			printf("ÇëÊäÈëÒª²åÈëµÄÔªËØX:\n");
+			printf("è¯·è¾“å…¥è¦æ’å…¥çš„å…ƒç´ X:\n");
 			scanf("%d", &x);
 			p = (LinkList)malloc(sizeof(LNode));
 			p->data = x;
 			Insert(L, p);
-			printf("²åÈë³É¹¦!!!\n\n");
+			printf("æ’å…¥æˆåŠŸ!!!\n\n");
 			break;
 		}
 		Tips();
